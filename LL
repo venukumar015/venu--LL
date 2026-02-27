@@ -1,0 +1,135 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+ class LL {
+    private Node head;
+    private Node tail;
+     int size;
+    class Node{
+         int data;
+         Node next;
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+        Node(int data, Node next){
+            this.data = data;
+            this.next = null;
+        }
+    }
+    // inersion at begining
+    public void insertFirst(int data){
+        Node node = new Node(data);
+        node.next = head;
+        head = node;
+        size++;
+       
+    }
+    //  insertion at last
+    public void insertLast(int data){
+        Node node = new Node(data);
+        if(tail == null){
+         head = tail = node;
+         return;
+        }
+        tail.next = node ;
+        tail = node;
+        size++;
+    }
+    public void insert(int val, int idx){
+        if(idx == 0){
+            insertFirst(val);
+            return;
+        }
+        Node temp = head;
+        for(int i = 1; i < idx;i++){
+            temp = temp.next;
+        }
+        Node node = new Node(val);
+        node.next = temp.next;
+        temp.next = node;
+        size++;
+    }
+    public int deleteFirst(){
+        if(head == null){
+            return -1;
+        }
+        int val = head.data;
+        head = head.next;
+        size--;
+        return val;
+    }
+    public int deleteLast(){
+        if(head == null){
+            return -1;
+        }
+        if(head.next == null){
+            int val = head.data;
+            head = null;
+            return val;
+        }
+        Node temp = head;
+        while(temp.next.next != null){
+            temp = temp.next;
+        }
+        int val = temp.next.data;
+        temp.next = null;
+        size--;
+        return val;
+    }
+    public int delete(int idx){
+        if(idx < 0 || idx >= size){
+            return -1;
+        }
+        if(idx == 0){
+           deleteFirst();
+        }
+        Node temp = head;
+        for(int i = 1; i < idx;i++){
+            temp = temp.next;
+        }
+        int val = temp.next.data;
+        temp.next = temp.next.next;
+        return val;
+    }
+    public int find(int val){
+        Node temp = head;
+        int idx = 0;
+        while(temp != null){
+            if(temp.data == val) return idx;
+            temp = temp.next;
+            idx++;
+        }
+        return -1;
+    }
+    public void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+        }
+        System.out.println("null");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+       LL list = new LL();
+      list.insertFirst(2);
+      list.insertFirst(13);
+      list.insertFirst(11);
+      list.insertFirst(8);
+      list.display();
+      list.insert(21,2);
+      list.display();
+      
+    
+    //   System.out.println(list.deleteFirst());
+    //   list.display();
+    //     System.out.println(list.deleteLast());
+    //     list.display();
+         System.out.println(list.delete(1));
+         list.display();
+         System.out.print(list.find(12));
+   
+        
+    }
+}
