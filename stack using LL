@@ -1,0 +1,38 @@
+import java.util.*;
+class Node{
+  int data;
+  Node next;
+  Node(int data){
+    this.data = data;
+    this.next = null;
+  }
+}
+ class StackLL {
+   Node top;
+   void push(int x){
+     Node node = new Node(x);
+     node.next = top;
+     top = node;
+   }
+   int pop(){
+     if(top == null){
+       return -1;
+     }
+     int val = top.data;
+     top = top.next;
+     return val;
+   }
+   int peek(){
+     if(top == null) return -1;
+     return top.data;
+   }
+ }
+public class Main {
+    public static void main(String[] args) {
+      StackLL st = new StackLL();
+     
+      st.push(89);
+      System.out.println(st.pop());
+      System.out.println(st.peek());
+    }
+}
