@@ -1,0 +1,49 @@
+import java.util.*;
+class StackDynamic{
+  int[] arr;
+  int capacity;
+  int top;
+  StackDynamic(){
+    capacity = 2;
+    arr = new int[capacity];
+    top = -1;
+  }
+  void push(int x){
+    if(top == capacity - 1){
+      resize();
+    }
+    arr[++top] = x;
+  }
+  void resize(){
+    capacity = capacity * 2;
+    int[] newArr = new int[capacity];
+    for(int i = 0; i <= top; i++){
+      newArr[i] = arr[i];
+    }
+    arr = newArr;
+  }
+  int pop(){
+    if(top == -1){
+     return -1;
+    }
+    return arr[top--];
+  }
+  int peek(){
+    if(top == -1) return -1;
+    return arr[top];
+  }
+}
+public class Main {
+    public static void main(String[] args) {
+      StackDynamic st = new StackDynamic();
+      st.push(19);
+      st.push(23);
+      st.push(21);
+      System.out.println(st.pop());
+      System.out.println(st.peek());
+      System.out.println(st.pop());
+      System.out.println(st.pop());
+      System.out.println(st.peek());
+      
+    }
+}
